@@ -19,5 +19,10 @@ export class UserService {
   find(id:any):Observable<User>{
     return this.httpClient.get<User>(apiUrl+"getUser/"+id).pipe()
   }
-  
+  update(id:any, user:any):Observable<User>{
+    return this.httpClient.put<User>(apiUrl+"updateUser/" + id, user)
+  }
+  create(user:any):Observable<User>{
+    return this.httpClient.post<User>(apiUrl + "createUser", user)
+  }
 }

@@ -1,17 +1,20 @@
-<table>
-    <tr>
-        <th>User id</th>
-        <th>User name</th>
-        <th>Email</th>
-        <th>Gender</th>
-        <th>Group id</th>
-    </tr>
-    <tr *ngFor="let item of datas">
-        <td>{{item._id}}</td>
-        <td>{{item.UserName}}</td>
-        <td>{{item.Email}}</td>
-        <td>{{item.Gender}}</td>
-        <td>{{item.GroupId}}</td>
-        <td><button [routerLink]="['edit/'+item._id]">edit</button></td>
-    </tr>
-</table>
+
+    <table>
+        <tr>
+            <th>User id</th>
+            <th>User name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Group id</th>
+        </tr>
+        <tr *ngFor="let item of datas">
+            <td>{{item._id}}</td>
+            <td>{{item.UserName}}</td>
+            <td>{{item.Email}}</td>
+            <td>{{item.Gender}}</td>
+            <td>{{item.GroupId}}</td>
+            <td><button [routerLink]="['edit/'+item._id]">edit</button></td>
+        </tr>
+
+    </table>
+    <button [routerLink]="['../create']">create user </button>

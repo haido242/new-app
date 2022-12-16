@@ -1,0 +1,25 @@
+<form [formGroup]="createForm"  (ngSubmit)="onSubmit()">
+  <table>
+    <tr>
+      <label for="UserName">User Name</label>
+      <input type="text" formControlName="UserName" />
+    </tr>
+    <tr>
+      <label for="Password">Password</label>
+      <input type="text" formControlName="Password" />
+    </tr>
+    <tr>
+      <label for="Email">Email</label>
+      <input type="text" formControlName="Email" />
+    </tr>
+    <tr>
+      <label for="Gender">Gender</label>
+      <input type="text" formControlName="Gender" />
+    </tr>
+    <tr>
+      <label for="GroupId">GroupId</label>
+      <input type="text" formControlName="GroupId" />
+    </tr>
+  </table>
+  <button type="submit" >submit</button>
+</form>

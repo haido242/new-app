@@ -9,10 +9,12 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { EdiUserComponent } from './edit-user/edit-user.component';
 import { GroupComponent } from './group/group.component';
+import { CreateUserComponent } from './create-user/create-user.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, UserComponent, EdiUserComponent, GroupComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [AppComponent, HeaderComponent, UserComponent, EdiUserComponent, GroupComponent, CreateUserComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

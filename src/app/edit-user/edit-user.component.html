@@ -1,21 +1,21 @@
-<form *ngFor="let item of user">
+<form *ngFor="let item of user" [formGroup]="editForm" (ngSubmit)="onSubmit()">
   <table>
     <tr>
       <label for="UserName">User Name</label>
-      <input type="text" name="UserName" [defaultValue]="item.UserName" />
+      <input type="text" formControlName="UserName" [defaultValue]="item.UserName" />
     </tr>
     <tr>
       <label for="Email">Email</label>
-      <input type="text" name="Email" [defaultValue]="item.Email" />
+      <input type="text" formControlName="Email" [defaultValue]="item.Email" />
     </tr>
     <tr>
       <label for="Gender">Gender</label>
-      <input type="text" name="Gender" [defaultValue]="item.Gender" />
+      <input type="text" formControlName="Gender" [defaultValue]="item.Gender" />
     </tr>
     <tr>
       <label for="GroupId">GroupId</label>
-      <input type="text" name="GroupId" [defaultValue]="item.GroupId" />
+      <input type="text" formControlName="GroupId" [defaultValue]="item.GroupId" />
     </tr>
   </table>
-  <button (onsubmit)="onSubmit()">submit</button>
+  <button type = "submit">submit</button>
 </form>
