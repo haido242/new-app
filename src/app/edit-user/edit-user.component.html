@@ -2,7 +2,11 @@
   <table>
     <tr>
       <label for="UserName">User Name</label>
-      <input type="text" formControlName="UserName" [defaultValue]="item.UserName" />
+      <input
+        type="text"
+        formControlName="UserName"
+        [defaultValue]="item.UserName"
+      />
     </tr>
     <tr>
       <label for="Email">Email</label>
@@ -10,12 +14,20 @@
     </tr>
     <tr>
       <label for="Gender">Gender</label>
-      <input type="text" formControlName="Gender" [defaultValue]="item.Gender" />
+      <input
+        type="text"
+        formControlName="Gender"
+        [defaultValue]="item.Gender"
+      />
     </tr>
     <tr>
       <label for="GroupId">GroupId</label>
-      <input type="text" formControlName="GroupId" [defaultValue]="item.GroupId" />
+      <input
+        type="text"
+        formControlName="GroupId"
+        [defaultValue]="item.GroupId"
+      />
     </tr>
   </table>
-  <button type = "submit">submit</button>
+  <button type="submit">submit</button>
 </form>

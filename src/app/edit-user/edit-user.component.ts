@@ -12,11 +12,11 @@ import { FormBuilder } from '@angular/forms';
 export class EdiUserComponent implements OnInit {
   user: User[] = [];
   editForm = this.formBuilder.group({
-    UserName : "",
-    Gender:'',
-    Email:'',
-    GroupId:''
-  })
+    UserName: '',
+    Gender: '',
+    Email: '',
+    GroupId: '',
+  });
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
@@ -33,8 +33,9 @@ export class EdiUserComponent implements OnInit {
     });
   }
   onSubmit() {
-    
-    this.userService.update(this.route.snapshot.params['id'], this.editForm.value).subscribe((res:any)=>console.log(res))
+    this.userService
+      .update(this.route.snapshot.params['id'], this.editForm.value)
+      .subscribe((res: any) => console.log(res));
     console.log('submit');
     console.log(this.route.snapshot.queryParamMap.getAll('UserName'));
   }
