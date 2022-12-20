@@ -11,10 +11,15 @@ import { EdiUserComponent } from './edit-user/edit-user.component';
 import { GroupComponent } from './group/group.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, UserComponent, EdiUserComponent, GroupComponent, CreateUserComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, NzFormModule, NzLayoutModule, NzInputModule,NzButtonModule],
   providers: [],
   bootstrap: [AppComponent],
 })

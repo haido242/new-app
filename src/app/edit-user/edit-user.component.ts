@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../model/user.model';
 import { UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators } from '@angular/forms';
+// import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Observable, Observer } from 'rxjs';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
 
 @Component({
   selector: 'app-edit-user',
@@ -28,15 +32,21 @@ export class EdiUserComponent implements OnInit {
   }
   getRoute(id: any) {
     this.userService.find(id).subscribe((res: any) => {
-      console.log(res);
-      this.user = res;
+      this.user = res || [];
+      this.editForm.setValue({
+        UserName: this.user[0]?.UserName,
+        Gender: this.user[0].Gender,
+        Email: this.user[0].Email,
+        GroupId: this.user[0].GroupId,
+      });
     });
   }
   onSubmit() {
+    // console.log('user:', this.user[0].UserName);
     this.userService
       .update(this.route.snapshot.params['id'], this.editForm.value)
-      .subscribe((res: any) => console.log(res));
-    console.log('submit');
+      .subscribe((res: any) => alert(res));
+    // console.log('submit');
     console.log(this.route.snapshot.queryParamMap.getAll('UserName'));
   }
 }

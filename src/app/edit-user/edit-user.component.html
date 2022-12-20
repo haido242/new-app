@@ -1,33 +1,40 @@
-<form *ngFor="let item of user" [formGroup]="editForm" (ngSubmit)="onSubmit()">
-  <table>
-    <tr>
-      <label for="UserName">User Name</label>
-      <input
-        type="text"
-        formControlName="UserName"
-        [defaultValue]="item.UserName"
-      />
-    </tr>
-    <tr>
-      <label for="Email">Email</label>
-      <input type="text" formControlName="Email" [defaultValue]="item.Email" />
-    </tr>
-    <tr>
-      <label for="Gender">Gender</label>
-      <input
-        type="text"
-        formControlName="Gender"
-        [defaultValue]="item.Gender"
-      />
-    </tr>
-    <tr>
-      <label for="GroupId">GroupId</label>
-      <input
-        type="text"
-        formControlName="GroupId"
-        [defaultValue]="item.GroupId"
-      />
-    </tr>
-  </table>
-  <button type="submit">submit</button>
+<form nz-form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>UserName</nz-form-label>
+    <nz-form-control [nzSpan]="16" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+      <input nz-input formControlName="UserName" placeholder="async validate try to write JasonWood" />
+      <ng-template #userErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">Please input your username!</ng-container>
+        <ng-container *ngIf="control.hasError('duplicated')">The username is redundant!</ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>E-mail</nz-form-label>
+    <nz-form-control [nzSpan]="20" nzHasFeedback [nzErrorTip]="emailErrorTpl">
+      <input nz-input formControlName="Email"  placeholder="email" type="email" />
+      <ng-template #emailErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('email')">The input is not valid E-mail!</ng-container>
+        <ng-container *ngIf="control.hasError('required')">Please input your E-mail!</ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Gender</nz-form-label>
+    <nz-form-control [nzSpan]="20"  nzHasFeedback nzErrorTip="Please input your password!">
+      <input nz-input type="text" formControlName="Gender"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>GroupId</nz-form-label>
+    <nz-form-control [nzSpan]="20" nzHasFeedback nzErrorTip="Please input your password!">
+      <input nz-input type="text" formControlName="GroupId"/>
+    </nz-form-control>
+  </nz-form-item>
+  
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button nzType="primary" >Submit</button>
+    </nz-form-control>
+  </nz-form-item>
 </form>

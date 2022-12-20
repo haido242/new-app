@@ -25,7 +25,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
             ],
             "scripts": []
           },
@@ -98,4 +98,5 @@
   "cli": {
     "analytics": false
   }
+  
 }

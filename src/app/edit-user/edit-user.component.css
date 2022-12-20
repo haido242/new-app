@@ -1,0 +1,14 @@
+
+[nz-form] {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    margin: 0 auto;
+    width: 30%;
+    border: 1px solid #ddd;
+  }
+
+  button {
+    margin-left: 8px;
+  }
