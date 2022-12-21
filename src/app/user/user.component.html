@@ -6,14 +6,15 @@
     <th>Gender</th>
     <th>Group id</th>
     <th class="btn--container">
-      <button
+      <!-- <button
         [routerLink]="['../create']"
         nz-button
         nzType="primary"
         nzShape="round"
       >
         <span nz-icon nzType="user-add" nzTheme="outline"></span>add user
-      </button>
+      </button> -->
+      <app-create-user></app-create-user>
     </th>
   </tr>
   <tr *ngFor="let item of datas">
