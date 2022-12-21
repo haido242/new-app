@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../model/user.model';
 import { UserService } from '../user.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators } from '@angular/forms';
-// import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators } from '@angular/forms';
-import { Observable, Observer } from 'rxjs';
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzInputModule } from 'ng-zorro-antd/input';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-user',

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../model/user.model';
 
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -18,5 +19,12 @@ export class UserComponent implements OnInit {
       console.log(res);
       this.datas = res;
     });
+  }
+  cancel(): void {
+    alert('click cancel');
+  }
+
+  confirm(): void {
+    alert('click confirm');
   }
 }

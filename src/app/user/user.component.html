@@ -1,20 +1,46 @@
-
-    <table>
-        <tr>
-            <th>User id</th>
-            <th>User name</th>
-            <th>Email</th>
-            <th>Gender</th>
-            <th>Group id</th>
-        </tr>
-        <tr *ngFor="let item of datas">
-            <td>{{item._id}}</td>
-            <td>{{item.UserName}}</td>
-            <td>{{item.Email}}</td>
-            <td>{{item.Gender}}</td>
-            <td>{{item.GroupId}}</td>
-            <td><button [routerLink]="['edit/'+item._id]">edit</button></td>
-        </tr>
-
-    </table>
-    <button [routerLink]="['../create']">create user </button>
+<table>
+  <tr>
+    <th>User id</th>
+    <th>User name</th>
+    <th>Email</th>
+    <th>Gender</th>
+    <th>Group id</th>
+    <th class="btn--container">
+      <button
+        [routerLink]="['../create']"
+        nz-button
+        nzType="primary"
+        nzShape="round"
+      >
+        <span nz-icon nzType="user-add" nzTheme="outline"></span>add user
+      </button>
+    </th>
+  </tr>
+  <tr *ngFor="let item of datas">
+    <td>{{ item._id }}</td>
+    <td>{{ item.UserName }}</td>
+    <td>{{ item.Email }}</td>
+    <td>{{ item.Gender }}</td>
+    <td>{{ item.GroupId }}</td>
+    <td class="btn--container">
+      <button
+        [routerLink]="['edit/' + item._id]"
+        nz-button
+        nzType="primary"
+        nzShape="circle"
+      >
+        <span nz-icon nzType="edit" nzTheme="outline"></span>
+      </button>
+      <button nzShape="circle" nz-button nzType="primary" nzDanger nz-popconfirm
+        nzPopconfirmTitle="Are you sure delete this task?"
+        (nzOnConfirm)="confirm()"
+        (nzOnCancel)="cancel()"
+        nzPopconfirmPlacement="leftBottom"
+        nz-button>
+        <span nz-icon nzType="delete" nzTheme="outline"></span>
+      </button>
+      <!-- <app-del-user></app-del-user> -->
+    </td>
+  </tr>
+</table>
+<!-- <button [routerLink]="['../create']">create user </button> -->
