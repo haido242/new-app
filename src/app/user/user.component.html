@@ -33,7 +33,9 @@
       </button>
       <button nzShape="circle" nz-button nzType="primary" nzDanger nz-popconfirm
         nzPopconfirmTitle="Are you sure delete this task?"
-        (nzOnConfirm)="confirm()"
+        nzOkText="delete"
+      nzCancelText="cancel"
+        (nzOnConfirm)="confirm(item._id )"
         (nzOnCancel)="cancel()"
         nzPopconfirmPlacement="leftBottom"
         nz-button>

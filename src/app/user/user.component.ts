@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from '../model/user.model';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -20,11 +21,19 @@ export class UserComponent implements OnInit {
       this.datas = res;
     });
   }
+  deleteUser(id: any){
+    console.log(id)
+    this.userService.del(id).subscribe((res:any) => {
+      alert(res)
+      this.getAll()
+    })
+  }
   cancel(): void {
     alert('click cancel');
   }
 
-  confirm(): void {
+  confirm(id: any): void {
+    this.deleteUser(id)
     alert('click confirm');
   }
 }
