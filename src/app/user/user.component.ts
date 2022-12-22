@@ -20,7 +20,6 @@ export class UserComponent implements OnInit {
   visible = false;
   listOfDisplayData = [...this.datas];
   filterName = [
-    
     { text: 'Admin', value: '63a3ff18053f2146c03ac0a7' },
     { text: 'Hr', value: '63a3ff1f053f2146c03ac0a8' },
   ];
