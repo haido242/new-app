@@ -27,12 +27,13 @@ import en from '@angular/common/locales/en';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 
 
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, UserComponent, EdiUserComponent, GroupComponent, CreateUserComponent, DeleteUserComponent, DelUserComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, NzFormModule, NzLayoutModule, NzInputModule,NzButtonModule, NzIconModule, NzModalModule,NzPopconfirmModule, FormsModule, BrowserAnimationsModule, IconsProviderModule, NzMenuModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, NzFormModule, NzLayoutModule, NzInputModule,NzButtonModule, NzIconModule, NzModalModule,NzPopconfirmModule, FormsModule, BrowserAnimationsModule, IconsProviderModule, NzMenuModule,NzSelectModule],
   providers: [
  
   ],

@@ -14,7 +14,7 @@
       >
         <span nz-icon nzType="user-add" nzTheme="outline"></span>add user
       </button> -->
-      <app-create-user></app-create-user>
+      <app-create-user ></app-create-user>
     </th>
   </tr>
   <tr *ngFor="let item of datas">
@@ -32,18 +32,23 @@
       >
         <span nz-icon nzType="edit" nzTheme="outline"></span>
       </button>
-      <button nzShape="circle" nz-button nzType="primary" nzDanger nz-popconfirm
+      <button
+        nzShape="circle"
+        nz-button
+        nzType="primary"
+        nzDanger
+        nz-popconfirm
         nzPopconfirmTitle="Are you sure delete this task?"
         nzOkText="delete"
-      nzCancelText="cancel"
-        (nzOnConfirm)="confirm(item._id )"
+        nzCancelText="cancel"
+        (nzOnConfirm)="confirm(item._id)"
         (nzOnCancel)="cancel()"
         nzPopconfirmPlacement="leftBottom"
-        nz-button>
+        nz-button
+      >
         <span nz-icon nzType="delete" nzTheme="outline"></span>
       </button>
-      <!-- <app-del-user></app-del-user> -->
     </td>
   </tr>
 </table>
-<!-- <button [routerLink]="['../create']">create user </button> -->
+

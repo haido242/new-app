@@ -15,7 +15,7 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.getAll();
   }
-  getAll() {
+  getAll():void {
     this.userService.getAll().subscribe((res: any) => {
       console.log(res);
       this.datas = res;

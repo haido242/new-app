@@ -1,36 +1,7 @@
-<!-- <form [formGroup]="createForm"  (ngSubmit)="onSubmit()">
-  <table>
-    <tr>
-      <label for="UserName">User Name</label>
-      <input type="text" formControlName="UserName" />
-    </tr>
-    <tr>
-      <label for="Password">Password</label>
-      <input type="text" formControlName="Password" />
-    </tr>
-    <tr>
-      <label for="Email">Email</label>
-      <input type="text" formControlName="Email" />
-    </tr>
-    <tr>
-      <label for="Gender">Gender</label>
-      <input type="text" formControlName="Gender" />
-    </tr>
-    <tr>
-      <label for="GroupId">GroupId</label>
-      <input type="text" formControlName="GroupId" />
-    </tr>
-  </table>
-  <button type="submit" >submit</button>
-</form> -->
-<!-- [routerLink]="['../create']" -->
-<button
-        nz-button
-        nzType="primary"
-        nzShape="round"
-      >
-        <span nz-icon nzType="user-add" nzTheme="outline"></span>add user
-      </button>
+
+<button nz-button nzType="primary" nzShape="round" (click)="showModal()">
+  <span nz-icon nzType="user-add" nzTheme="outline"></span>add user
+</button>
 <nz-modal
   [(nzVisible)]="isVisible"
   [nzTitle]="modalTitle"
@@ -38,19 +9,65 @@
   [nzFooter]="modalFooter"
   (nzOnCancel)="handleCancel()"
 >
-  <ng-template #modalTitle>Custom Modal Title</ng-template>
+  <ng-template #modalTitle>Create User</ng-template>
 
   <ng-template #modalContent>
-    <p>Modal Content</p>
-    <p>Modal Content</p>
-    <p>Modal Content</p>
-    <p>Modal Content</p>
-    <p>Modal Content</p>
+    <form [formGroup]="createForm"  (ngSubmit)="onSubmit()">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">User Name</nz-form-label>
+        <nz-form-control [nzSpan]="13">
+          <input nz-input formControlName="UserName" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">Password</nz-form-label>
+        <nz-form-control [nzSpan]="13">
+          <input nz-input formControlName="Password" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">Gender</nz-form-label>
+        <nz-form-control [nzSpan]="13">
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Gender" [(ngModel)]="Gender" formControlName="Gender">
+            <nz-option nzCustomContent nzLabel="Male" nzValue="Male">
+              <span nz-icon nzType="man" nzTheme="outline"></span>
+              Male
+            </nz-option>
+            <nz-option nzCustomContent nzLabel="Female" nzValue="Female">
+              <span nz-icon nzType="woman" nzTheme="outline"></span>
+              Female
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">Email</nz-form-label>
+        <nz-form-control [nzSpan]="13">
+          <input nz-input formControlName="Email" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">GroupId</nz-form-label>
+        <nz-form-control [nzSpan]="13">
+          <input nz-input formControlName="GroupId" />
+        </nz-form-control>
+      </nz-form-item>
+    </form>
   </ng-template>
 
   <ng-template #modalFooter>
-    <span>Modal Footer:</span>
-    <button nz-button nzType="default" (click)="handleCancel()">Custom Callback</button>
-    <button nz-button nzType="primary" (click)="handleOk()" [nzLoading]="isConfirmLoading">Custom Submit</button>
+    <button nz-button nzType="default" (click)="handleCancel()">Cancel</button>
+    <button
+      nz-button
+      nzType="primary"
+      (click)="handleOk()"
+      [nzLoading]="isConfirmLoading"
+    >
+      Submit
+    </button>
   </ng-template>
 </nz-modal>
