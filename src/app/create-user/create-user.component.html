@@ -44,18 +44,24 @@
       </nz-form-item>
 
       <nz-form-item>
+        <nz-form-label [nzSpan]="7">Group</nz-form-label>
+        <nz-form-control [nzSpan]="13">
+          <!-- <input nz-input formControlName="GroupId" /> -->
+          <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Group" [(ngModel)]="group" formControlName="GroupId">
+            <nz-option *ngFor="let data of Group" nzCustomContent [nzLabel]="data.GroupName" [nzValue]="data._id">
+              {{data.GroupName}}
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
         <nz-form-label [nzSpan]="7">Email</nz-form-label>
         <nz-form-control [nzSpan]="13">
           <input nz-input formControlName="Email" />
         </nz-form-control>
       </nz-form-item>
 
-      <nz-form-item>
-        <nz-form-label [nzSpan]="7">GroupId</nz-form-label>
-        <nz-form-control [nzSpan]="13">
-          <input nz-input formControlName="GroupId" />
-        </nz-form-control>
-      </nz-form-item>
     </form>
   </ng-template>
 

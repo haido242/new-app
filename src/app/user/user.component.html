@@ -1,54 +1,86 @@
-<table>
-  <tr>
-    <th>User id</th>
-    <th>User name</th>
-    <th>Email</th>
-    <th>Gender</th>
-    <th>Group id</th>
-    <th class="btn--container">
-      <!-- <button
-        [routerLink]="['../create']"
-        nz-button
-        nzType="primary"
-        nzShape="round"
-      >
-        <span nz-icon nzType="user-add" nzTheme="outline"></span>add user
-      </button> -->
-      <app-create-user ></app-create-user>
-    </th>
-  </tr>
-  <tr *ngFor="let item of datas">
-    <td>{{ item._id }}</td>
-    <td>{{ item.UserName }}</td>
-    <td>{{ item.Email }}</td>
-    <td>{{ item.Gender }}</td>
-    <td>{{ item.GroupId }}</td>
-    <td class="btn--container">
+<h1 nz-typography style="text-align: center">User</h1>
+<nz-table
+  #columSelectionTable
+  nzShowSizeChanger
+  [nzData]="listOfDisplayData"
+  (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+>
+  <thead>
+    <tr>
+      <th>User id</th>
+      <th nzCustomFilter>
+        User name
+        <nz-filter-trigger
+          [(nzVisible)]="visible"
+          [nzActive]="searchValue.length > 0"
+          [nzDropdownMenu]="menu"
+        >
+          <span nz-icon nzType="search"></span>
+        </nz-filter-trigger>
+      </th>
+      <th>Email</th>
+      <th>Gender</th>
+      <th [nzFilters]="filterName" [nzFilterFn]="nameFilterFn">Group id</th>
+      <th class="btn--container">
+        <app-create-user></app-create-user>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of columSelectionTable.data">
+      <td>{{ data._id }}</td>
+      <td>{{ data.UserName }}</td>
+      <td>{{ data.Email }}</td>
+      <td>{{ data.Gender }}</td>
+      <td>{{ data.GroupId }}</td>
+      <td class="btn--container">
+        <button
+          [routerLink]="['edit/' + data._id]"
+          nz-button
+          nzType="primary"
+          nzShape="circle"
+        >
+          <span nz-icon nzType="edit" nzTheme="outline"></span>
+        </button>
+        <button
+          nzShape="circle"
+          nz-button
+          nzType="primary"
+          nzDanger
+          nz-popconfirm
+          nzPopconfirmTitle="Are you sure delete this User?"
+          nzOkText="delete"
+          nzCancelText="cancel"
+          (nzOnConfirm)="confirm(data._id)"
+          (nzOnCancel)="cancel()"
+          nzPopconfirmPlacement="leftBottom"
+          nz-button
+        >
+          <span nz-icon nzType="delete" nzTheme="outline"></span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <div class="ant-table-filter-dropdown">
+    <div class="search-box">
+      <input
+        type="text"
+        nz-input
+        placeholder="Search name"
+        [(ngModel)]="searchValue"
+      />
       <button
-        [routerLink]="['edit/' + item._id]"
         nz-button
+        nzSize="small"
         nzType="primary"
-        nzShape="circle"
+        (click)="search()"
+        class="search-button"
       >
-        <span nz-icon nzType="edit" nzTheme="outline"></span>
+        Search
       </button>
-      <button
-        nzShape="circle"
-        nz-button
-        nzType="primary"
-        nzDanger
-        nz-popconfirm
-        nzPopconfirmTitle="Are you sure delete this task?"
-        nzOkText="delete"
-        nzCancelText="cancel"
-        (nzOnConfirm)="confirm(item._id)"
-        (nzOnCancel)="cancel()"
-        nzPopconfirmPlacement="leftBottom"
-        nz-button
-      >
-        <span nz-icon nzType="delete" nzTheme="outline"></span>
-      </button>
-    </td>
-  </tr>
-</table>
-
+      <button nz-button nzSize="small" (click)="reset()">Reset</button>
+    </div>
+  </div>
+</nz-dropdown-menu>

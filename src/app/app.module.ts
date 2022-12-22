@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HttpClient,
+  HttpHeaders,
+} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -28,18 +32,43 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-
-
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, UserComponent, EdiUserComponent, GroupComponent, CreateUserComponent, DeleteUserComponent, DelUserComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule, NzFormModule, NzLayoutModule, NzInputModule,NzButtonModule, NzIconModule, NzModalModule,NzPopconfirmModule, FormsModule, BrowserAnimationsModule, IconsProviderModule, NzMenuModule,NzSelectModule],
-  providers: [
- 
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    UserComponent,
+    EdiUserComponent,
+    GroupComponent,
+    CreateUserComponent,
+    DeleteUserComponent,
+    DelUserComponent,
   ],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    IconsProviderModule,
+    NzFormModule,
+    NzLayoutModule,
+    NzInputModule,
+    NzButtonModule,
+    NzIconModule,
+    NzModalModule,
+    NzPopconfirmModule,
+    NzMenuModule,
+    NzSelectModule,
+    NzAlertModule,
+    NzTableModule,
+    NzDropDownModule,
+  ],
+  providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
-  
 })
-export class AppModule {
-
-}
+export class AppModule {}
