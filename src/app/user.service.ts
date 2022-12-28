@@ -28,4 +28,7 @@ export class UserService {
   del(id : any):Observable<User>{
     return this.httpClient.delete<User>(apiUrl+"delete/"+id)
   }
+  search(value : any):Observable<User[]>{
+    return this.httpClient.get<User[]>(apiUrl+ "search", value)
+  }
 }

@@ -1,4 +1,17 @@
 <h1 nz-typography style="text-align: center">User</h1>
+<ul nz-menu nzMode="horizontal">
+  <li nz-menu-item nzCustomFilter>
+    <nz-filter-trigger
+      [(nzVisible)]="visible"
+      [nzActive]="searchValue.length > 0"
+      [nzDropdownMenu]="menu"
+    >
+      <span nz-icon nzType="search"></span>
+    </nz-filter-trigger>
+    Search
+  </li>
+  <li nz-menu-item></li>
+</ul>
 <nz-table
   #columSelectionTable
   nzShowSizeChanger
@@ -10,13 +23,13 @@
       <th>User id</th>
       <th nzCustomFilter>
         User name
-        <nz-filter-trigger
+        <!-- <nz-filter-trigger
           [(nzVisible)]="visible"
           [nzActive]="searchValue.length > 0"
           [nzDropdownMenu]="menu"
         >
           <span nz-icon nzType="search"></span>
-        </nz-filter-trigger>
+        </nz-filter-trigger> -->
       </th>
       <th>Email</th>
       <th>Gender</th>
