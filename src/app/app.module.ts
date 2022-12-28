@@ -35,7 +35,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb'
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +67,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
     NzAlertModule,
     NzTableModule,
     NzDropDownModule,
+    NzBreadCrumbModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

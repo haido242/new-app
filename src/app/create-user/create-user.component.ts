@@ -21,6 +21,7 @@ export class CreateUserComponent {
     Gender : '',
     Email: '',
     GroupId: '',
+    CreateAt: Date.now()
   });
   isVisible = false;
   isConfirmLoading = false;
