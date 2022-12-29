@@ -17,6 +17,7 @@ export class UserComponent implements OnInit {
   datas: User[] = [];
   listOfCurrentPageData: readonly User[] = [];
   searchValue = '';
+  requestQuery = ""
   visible = false;
   listOfDisplayData = [...this.datas];
   filterName = [
@@ -28,18 +29,20 @@ export class UserComponent implements OnInit {
     private userService: UserService,
     private groupService: GroupService
   ) {}
+  sort(options:any){
+    this.searchValue += `sort=${options}`
+  }
   onCurrentPageDataChange($event: readonly User[]): void {
     this.listOfCurrentPageData = $event;
   }
   search(): void {
     this.visible = false;
-    this.listOfDisplayData = this.datas.filter(
-      (item: User) => item.UserName.indexOf(this.searchValue) !== -1
-    );
+    this.searchOnDB()
   }
   reset(): void {
+    this.visible = false;
     this.searchValue = '';
-    this.search();
+    this.getAll();
   }
   ngOnInit(): void {
     this.getAll();
@@ -57,6 +60,12 @@ export class UserComponent implements OnInit {
       console.log(res);
       this.Group = res;
     });
+  }
+  searchOnDB(): void{
+    this.userService.search(this.searchValue).subscribe((res:any) =>{
+      console.log(res)
+      this.listOfDisplayData = res
+    })
   }
   deleteUser(id: any) {
     console.log(id);

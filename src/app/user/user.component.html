@@ -6,11 +6,24 @@
       [nzActive]="searchValue.length > 0"
       [nzDropdownMenu]="menu"
     >
-      <span nz-icon nzType="search"></span>
+      <button nz-button nzType="dashed">
+        <span nz-icon nzType="search"></span>
+        Search
+      </button>
     </nz-filter-trigger>
-    Search
   </li>
-  <li nz-menu-item></li>
+  <li nz-menu-item>
+    <button
+      nz-button
+      nzType="text"
+      nz-dropdown
+      nzTrigger="click"
+      [nzDropdownMenu]="sort"
+    >
+      <span nz-icon nzType="search"></span>
+      Sort
+    </button>
+  </li>
 </ul>
 <nz-table
   #columSelectionTable
@@ -96,5 +109,19 @@
       <button nz-button nzSize="small" (click)="reset()">Reset</button>
     </div>
   </div>
+</nz-dropdown-menu>
+<nz-dropdown-menu #sort="nzDropdownMenu">
+  <ul nz-menu>
+    <li>
+      <button nz-button nzType="text">
+        <span nz-icon nzType="sort-ascending" nzTheme="outline"></span>Asc
+      </button>
+    </li>
+    <li>
+      <button nz-button nzType="text" >
+        <span nz-icon nzType="sort-descending" nzTheme="outline"></span>Desc
+      </button>
+    </li>
+  </ul>
 </nz-dropdown-menu>
 <!-- phân trang... backend -->

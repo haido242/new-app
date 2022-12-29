@@ -25,10 +25,14 @@ export class UserService {
   create(user:any):Observable<User>{
     return this.httpClient.post<User>(apiUrl + "createUser", user)
   }
+  search(searchValue: any){
+    console.log(searchValue)
+    return this.httpClient.get(apiUrl + "search/"+ searchValue)
+  }
   del(id : any):Observable<User>{
     return this.httpClient.delete<User>(apiUrl+"delete/"+id)
   }
-  search(value : any):Observable<User[]>{
-    return this.httpClient.get<User[]>(apiUrl+ "search", value)
+  getAllAndPagination(params:any):Observable<User[]>{
+    return this.httpClient.get<User[]>(apiUrl+"getListUsers?"+params)
   }
 }
