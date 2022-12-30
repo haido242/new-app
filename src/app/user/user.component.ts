@@ -19,6 +19,10 @@ export class UserComponent implements OnInit {
   searchValue = '';
   requestQuery = ""
   visible = false;
+  pageIndex = 1
+  total = 100
+  pageSize = 10
+  params = `page=${this.pageIndex}&limit=${this.pageSize}`
   listOfDisplayData = [...this.datas];
   filterName = [
     { text: 'Admin', value: '63a3ff18053f2146c03ac0a7' },
@@ -35,6 +39,10 @@ export class UserComponent implements OnInit {
   onCurrentPageDataChange($event: readonly User[]): void {
     this.listOfCurrentPageData = $event;
   }
+  logger(){
+    this.getAll()
+    // console.log(this.pageIndex, this.pageSize)
+  }
   search(): void {
     this.visible = false;
     this.searchOnDB()
@@ -49,9 +57,10 @@ export class UserComponent implements OnInit {
     this.getAllGroup()
   }
   getAll(): void {
-    this.userService.getAll().subscribe((res: any) => {
+    this.userService.getAllAndPagination(`page=${this.pageIndex}&limit=${this.pageSize}`).subscribe((res: any) => {
       console.log(res);
-      this.datas = res;
+      this.datas = res.data;
+      this.total = res.total
       this.listOfDisplayData = this.datas;
     });
   }
