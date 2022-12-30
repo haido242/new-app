@@ -27,22 +27,14 @@
 </ul>
 <nz-table
   #columSelectionTable
-  nzShowSizeChanger
+  [nzFrontPagination] = "false"
   [nzData]="listOfDisplayData"
-  (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
->
+  >
   <thead>
     <tr>
       <th>User id</th>
       <th nzCustomFilter>
         User name
-        <!-- <nz-filter-trigger
-          [(nzVisible)]="visible"
-          [nzActive]="searchValue.length > 0"
-          [nzDropdownMenu]="menu"
-        >
-          <span nz-icon nzType="search"></span>
-        </nz-filter-trigger> -->
       </th>
       <th>Email</th>
       <th>Gender</th>
@@ -87,6 +79,7 @@
       </td>
     </tr>
   </tbody>
+  <nz-pagination (click) = "logger()" [(nzPageIndex)]="pageIndex" [nzTotal]="total" nzShowSizeChanger [(nzPageSize)]="pageSize"></nz-pagination>
 </nz-table>
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <div class="ant-table-filter-dropdown">
@@ -124,4 +117,3 @@
     </li>
   </ul>
 </nz-dropdown-menu>
-<!-- phân trang... backend -->

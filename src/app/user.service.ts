@@ -33,6 +33,7 @@ export class UserService {
     return this.httpClient.delete<User>(apiUrl+"delete/"+id)
   }
   getAllAndPagination(params:any):Observable<User[]>{
+    console.log(params)
     return this.httpClient.get<User[]>(apiUrl+"getListUsers?"+params)
   }
 }
