@@ -32,8 +32,8 @@ export class UserService {
   del(id : any):Observable<User>{
     return this.httpClient.delete<User>(apiUrl+"delete/"+id)
   }
-  getAllAndPagination(params:any):Observable<User[]>{
-    console.log(params)
-    return this.httpClient.get<User[]>(apiUrl+"getListUsers?"+params)
+  getAllAndPagination(pageIndex: any, pageSize: any, sort: any):Observable<User[]>{
+    console.log(pageIndex, pageSize, sort)
+    return this.httpClient.get<User[]>(apiUrl+`getListUsers?page=${pageIndex}&limit=${pageSize}&sort=${sort}`)
   }
 }

@@ -31,3 +31,6 @@ table {
   .search-button {
     margin-right: 8px;
   }
+  nz-select {
+    width: 200px;
+  }

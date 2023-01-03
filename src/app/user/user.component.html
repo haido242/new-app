@@ -18,7 +18,7 @@
       nzType="text"
       nz-dropdown
       nzTrigger="click"
-      [nzDropdownMenu]="sort"
+      [nzDropdownMenu]="Sort"
     >
       <span nz-icon nzType="search"></span>
       Sort
@@ -50,7 +50,7 @@
       <td>{{ data.UserName }}</td>
       <td>{{ data.Email }}</td>
       <td>{{ data.Gender }}</td>
-      <td>{{ data.GroupId }}</td>
+      <td>{{ data.GroupName }}</td>
       <td class="btn--container">
         <button
           [routerLink]="['edit/' + data._id]"
@@ -79,7 +79,7 @@
       </td>
     </tr>
   </tbody>
-  <nz-pagination (click) = "logger()" [(nzPageIndex)]="pageIndex" [nzTotal]="total" nzShowSizeChanger [(nzPageSize)]="pageSize"></nz-pagination>
+  <nz-pagination [(nzPageIndex)]="pageIndex" [nzTotal]="total" nzShowSizeChanger [(nzPageSize)]="pageSize" (nzPageSizeChange) = "logger()" (nzPageIndexChange) = "logger()"></nz-pagination>
 </nz-table>
 <nz-dropdown-menu #menu="nzDropdownMenu">
   <div class="ant-table-filter-dropdown">
@@ -103,16 +103,30 @@
     </div>
   </div>
 </nz-dropdown-menu>
-<nz-dropdown-menu #sort="nzDropdownMenu">
+<!-- <nz-select ngModel="Default" nzPlaceHolder="Choose">
+  <nz-option nzValue="UserName" nzLabel="User Name Asc"></nz-option>
+  <nz-option nzValue="-UserName" nzLabel="User Name Desc"></nz-option>
+</nz-select> -->
+<nz-dropdown-menu #Sort="nzDropdownMenu">
   <ul nz-menu>
     <li>
-      <button nz-button nzType="text">
-        <span nz-icon nzType="sort-ascending" nzTheme="outline"></span>Asc
+      <button nz-button nzType="text" (click)="sort('UserName')">
+        <span nz-icon nzType="sort-ascending" nzTheme="outline"></span>User Name Asc
       </button>
     </li>
     <li>
-      <button nz-button nzType="text" >
-        <span nz-icon nzType="sort-descending" nzTheme="outline"></span>Desc
+      <button nz-button nzType="text" (click)="sort('-UserName')" >
+        <span nz-icon nzType="sort-descending" nzTheme="outline"></span>User Name Desc
+      </button>
+    </li>
+    <li>
+      <button nz-button nzType="text" (click)="sort('_id')">
+        <span nz-icon nzType="sort-ascending" nzTheme="outline"></span>User ID Asc
+      </button>
+    </li>
+    <li>
+      <button nz-button nzType="text" (click)="sort('-_id')">
+        <span nz-icon nzType="sort-descending" nzTheme="outline"></span>User ID Desc
       </button>
     </li>
   </ul>
