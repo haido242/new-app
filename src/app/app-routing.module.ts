@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user/user.component';
 import { EdiUserComponent } from './edit-user/edit-user.component';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { StatComponent } from './stat/stat.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,11 @@ const routes: Routes = [
   },
   {
     path: 'create', component: CreateUserComponent
+  },
+  {
+    path: 'stat', component: StatComponent
   }
+
 ];
 
 @NgModule({

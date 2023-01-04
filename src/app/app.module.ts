@@ -37,6 +37,8 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb'
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { StatComponent } from './stat/stat.component';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +49,7 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
     CreateUserComponent,
     DeleteUserComponent,
     DelUserComponent,
+    StatComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -69,7 +72,8 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
     NzTableModule,
     NzDropDownModule,
     NzBreadCrumbModule,
-    NzPaginationModule
+    NzPaginationModule,
+    NzDatePickerModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

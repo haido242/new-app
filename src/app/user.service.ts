@@ -36,4 +36,11 @@ export class UserService {
     console.log(pageIndex, pageSize, sort)
     return this.httpClient.get<User[]>(apiUrl+`getListUsers?page=${pageIndex}&limit=${pageSize}&sort=${sort}`)
   }
+  getByDateRange(date: any):Observable<any>{
+    date = {dateStart : date[0].getTime(),
+      dateEnd:date[1].getTime()}
+    date = new URLSearchParams(date).toString()
+    console.log(date)
+    return this.httpClient.get<User[]>(apiUrl+'getByDate/?'+ date)
+  }
 }

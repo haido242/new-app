@@ -1,13 +1,8 @@
-<nav>
-  <div class="navbar">
-    <ul>
-      <li>
-        <a [routerLink]="['user']"> User </a>
-      </li>
-
-      <li>
-        <a [routerLink]="['group']"> Group</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<nz-header>
+  <div class="logo"></div>
+  <ul nz-menu nzTheme="dark" nzMode="horizontal">
+    <li nz-menu-item><a [routerLink]="['user']"> User </a></li>
+    <li nz-menu-item><a [routerLink]="['group']"> Group</a></li>
+    <li nz-menu-item><a [routerLink]="['stat']"> Statistical</a></li>
+  </ul>
+</nz-header>
