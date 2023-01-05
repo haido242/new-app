@@ -39,6 +39,7 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb'
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { StatComponent } from './stat/stat.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,7 +74,9 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
     NzDropDownModule,
     NzBreadCrumbModule,
     NzPaginationModule,
-    NzDatePickerModule
+    NzDatePickerModule,
+    NzStatisticModule,
+    
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],

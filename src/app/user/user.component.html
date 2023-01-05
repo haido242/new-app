@@ -24,6 +24,26 @@
       Sort
     </button>
   </li>
+  <li nz-menu-item nz-submenu nzPlacement="bottomLeft" nzTitle="Filter">
+    <ul>
+      <li nz-submenu nzTitle="Group">
+        <ul *ngFor="let item of Group">
+          <li nz-menu-item (click)="setFilter('GroupId', item._id)">
+            {{item.GroupName}}
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Gender">
+        <ul>
+          <li nz-menu-item (click)="setFilter('Gender', 'Male')">Male</li>
+          <li nz-menu-item (click)="setFilter('Gender', 'Female')">Female</li>
+        </ul>
+      </li>
+      <li nz-menu-item>
+        <button nz-button nzType="primary" nzDanger (click)="clearFilter()">clear Filter</button>
+      </li>
+    </ul>
+  </li>
 </ul>
 <nz-table
   #columSelectionTable
@@ -38,7 +58,7 @@
       </th>
       <th>Email</th>
       <th>Gender</th>
-      <th [nzFilters]="filterName" [nzFilterFn]="nameFilterFn">Group</th>
+      <th>Group</th>
       <th class="btn--container">
         <app-create-user></app-create-user>
       </th>

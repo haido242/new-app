@@ -34,14 +34,12 @@ export class CreateUserComponent {
     private groupService: GroupService
   ) {}
   onSubmit() {
-    console.log(this.createForm.value);
+
     this.userService.create(this.createForm.value).subscribe((res: any) => {
-      console.log(res);
       this.isConfirmLoading = false;
       this.isVisible = false;
       this.userComp.getAll()
     });
-    console.log(this.route.snapshot.queryParamMap.getAll('UserName'));
   }
   showModal(): void {
     this.getAllGroup()
@@ -51,7 +49,6 @@ export class CreateUserComponent {
   group = null
   getAllGroup(): void{
       this.groupService.getAll().subscribe((res: any) => {
-        console.log(res)
         this.Group = res
       })
     }

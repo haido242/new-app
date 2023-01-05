@@ -5,6 +5,6 @@ export class User {
   Email!: string;
   Gender!: string;
   GroupId!: string;
-  CreateAt!: Date;
+  CreateAt!: string;
   GroupName!: string
 }

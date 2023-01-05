@@ -14,43 +14,56 @@ import { skip } from 'rxjs';
 })
 export class UserComponent implements OnInit {
   nameFilterFn = (list: string[], item: User): boolean =>
-  list.some((name) => item.GroupId.indexOf(name) !== -1);
+    list.some((name) => item.GroupId.indexOf(name) !== -1);
   Group: Group[] = [];
   datas: User[] = [];
   listOfCurrentPageData: readonly User[] = [];
   searchValue = '';
   visible = false;
-  pageIndex = 1
-  total = 10
-  pageSize = 10
-  sortQuery = ''
-  params = `page=${this.pageIndex}&limit=${this.pageSize}`
+  pageIndex = 1;
+  total = 10;
+  pageSize = 10;
+  sortQuery = {};
+  filterName = '';
+  filter = '';
+  params = {};
   listOfDisplayData = [...this.datas];
-  filterName = [
-    { text: 'Admin', value: '63a3ff18053f2146c03ac0a7' },
-    { text: 'Hr', value: '63a3ff1f053f2146c03ac0a8' },
-  ];
+
   constructor(
     private userService: UserService,
     private groupService: GroupService
   ) {}
-  sort(option: string){
-    this.sortQuery = option
-    this.getAll()
-    console.log()
+  sort(option: string) {
+    this.sortQuery = {sort: option}
+    this.params = Object.assign({},this.params, this.sortQuery)
+    this.getAll();
   }
-  // onCurrentPageDataChange($event: readonly User[]): void {
-
-  //   this.listOfCurrentPageData = $event;
-  // }
-  logger(){
-    this.params = `page=${this.pageIndex}&limit=${this.pageSize}`
+  setFilter(filterName: any, filter: any) {
+    this.params = {
+      page: this.pageIndex,
+      limit: this.pageSize,
+      filter: filter,
+      field: filterName,
+    };
+    this.getAll();
+  }
+  logger() {
+    this.params = {
+      page: this.pageIndex,
+      limit: this.pageSize,
+    };
+    this.getAll();
+  }
+  clearFilter(){
+    this.setDefaultParams()
     this.getAll()
-    // console.log(this.pageIndex, this.pageSize)
+  }
+  setDefaultParams() {
+    this.params = { page: this.pageIndex, limit: this.pageSize };
   }
   search(): void {
     this.visible = false;
-    this.searchOnDB()
+    this.searchOnDB();
   }
   reset(): void {
     this.visible = false;
@@ -58,44 +71,38 @@ export class UserComponent implements OnInit {
     this.getAll();
   }
   ngOnInit(): void {
-    this.getAllGroup()
+    this.setDefaultParams();
+    this.getAllGroup();
     this.getAll();
   }
   getAll(): void {
-    this.userService.getAllAndPagination(this.pageIndex, this.pageSize, this.sortQuery).subscribe((res: any) => {
-      console.log(res);
+    this.userService.getAllAndPagination(this.params).subscribe((res: any) => {
       this.datas = res.data;
-      this.total = res.total
+      this.total = res.total;
       this.listOfDisplayData = this.datas;
       res.data.forEach((Element: any) => {
         for (const e of this.Group) {
-          if(Element.GroupId == e._id){
-            Element.GroupName = e.GroupName
-            console.log(e._id)
-            break
-          }else{
-            Element.GroupName ="Group Not Found"
+          if (Element.GroupId == e._id) {
+            Element.GroupName = e.GroupName;
+            break;
+          } else {
+            Element.GroupName = 'Group Not Found';
           }
-          
         }
-      })
+      });
     });
   }
   getAllGroup(): void {
     this.groupService.getAll().subscribe((res: any) => {
-      console.log(res);
       this.Group = res;
-     
     });
   }
-  searchOnDB(): void{
-    this.userService.search(this.searchValue).subscribe((res:any) =>{
-      console.log(res)
-      this.listOfDisplayData = res
-    })
+  searchOnDB(): void {
+    this.userService.search(this.searchValue).subscribe((res: any) => {
+      this.listOfDisplayData = res;
+    });
   }
   deleteUser(id: any) {
-    console.log(id);
     this.userService.del(id).subscribe((res: any) => {
       alert(res);
       this.getAll();

@@ -38,11 +38,8 @@ export class EdiUserComponent implements OnInit {
     });
   }
   onSubmit() {
-    // console.log('user:', this.user[0].UserName);
     this.userService
       .update(this.route.snapshot.params['id'], this.editForm.value)
       .subscribe((res: any) => alert(res));
-    // console.log('submit');
-    console.log(this.route.snapshot.queryParamMap.getAll('UserName'));
   }
 }

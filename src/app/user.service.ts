@@ -32,9 +32,11 @@ export class UserService {
   del(id : any):Observable<User>{
     return this.httpClient.delete<User>(apiUrl+"delete/"+id)
   }
-  getAllAndPagination(pageIndex: any, pageSize: any, sort: any):Observable<User[]>{
-    console.log(pageIndex, pageSize, sort)
-    return this.httpClient.get<User[]>(apiUrl+`getListUsers?page=${pageIndex}&limit=${pageSize}&sort=${sort}`)
+  getAllAndPagination(params:any):Observable<User[]>{
+    // console.log(pageIndex, pageSize, sort)
+    console.log("params", params)
+    params = new URLSearchParams(params).toString()
+    return this.httpClient.get<User[]>(apiUrl+`getListUsers?${params}`)
   }
   getByDateRange(date: any):Observable<any>{
     date = {dateStart : date[0].getTime(),

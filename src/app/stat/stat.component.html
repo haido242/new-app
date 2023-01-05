@@ -1,24 +1,42 @@
 <h1>Stat</h1>
-<nz-range-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-range-picker>
-    <br />
-
+<nz-range-picker
+  [(ngModel)]="date"
+  (ngModelChange)="onChange($event)"
+></nz-range-picker>
+<br />
+<nz-row  [nzGutter]="16">
+  <nz-col [nzSpan]="12">
+    <nz-statistic
+      [nzValue]="(totalInRange | number)!"
+      [nzTitle]="'Active Users'"
+    ></nz-statistic>
+  </nz-col>
+  <nz-col [nzSpan]="12">
+    <nz-statistic
+      [nzValue]="(total | number : '1.0-2')!"
+      [nzTitle]="'Total Account'"
+    ></nz-statistic>
+  </nz-col>
+</nz-row>
 <nz-table #basicTable [nzData]="data">
-    <thead>
-        <tr>
-          <th>User ID`</th>
-          <th>User name</th>
-          <th>Email</th>
-          <th>Gender</th>
-          <th>Group</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of basicTable.data">
-            <td>{{user._id}}</td>
-            <td>{{user.UserName}}</td>
-            <td>{{user.Email}}</td>
-            <td>{{user.Gender}}</td>
-            <td>{{user.GroupId}}</td>
-        </tr>
-      </tbody>
+  <thead>
+    <tr>
+      <th>User ID`</th>
+      <th>User name</th>
+      <th>Email</th>
+      <th>Gender</th>
+      <th>Group</th>
+      <th>Create At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of basicTable.data">
+      <td>{{ user._id }}</td>
+      <td>{{ user.UserName }}</td>
+      <td>{{ user.Email }}</td>
+      <td>{{ user.Gender }}</td>
+      <td>{{ user.GroupId }}</td>
+      <td>{{ user.CreateAt }}</td>
+    </tr>
+  </tbody>
 </nz-table>
