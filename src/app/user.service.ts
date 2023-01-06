@@ -2,47 +2,48 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from './model/user.model';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // const httpOptions ={
 //   headers:new HttpHeaders({'Content-Type':'Application/json'})
 // }
-const apiUrl = 'http://localhost:3001/'
+const apiUrl = 'http://localhost:3001/';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
-  constructor(private httpClient:HttpClient) { }
-  getAll():Observable<User[]>{
-    return this.httpClient.get<User[]>(apiUrl+"getListUser")
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+  getAll(): Observable<User[]> {
+    return this.httpClient.get<User[]>(apiUrl + 'getListUser');
   }
-  find(id:any):Observable<User>{
-    return this.httpClient.get<User>(apiUrl+"getUser/"+id).pipe()
+  find(id: any): Observable<User> {
+    return this.httpClient.get<User>(apiUrl + 'getUser/' + id).pipe();
   }
-  update(id:any, user:any):Observable<User>{
-    return this.httpClient.put<User>(apiUrl+"updateUser/" + id, user)
+  update(id: any, user: any): Observable<User> {
+    return this.httpClient.put<User>(apiUrl + 'updateUser/' + id, user);
   }
-  create(user:any):Observable<User>{
-    return this.httpClient.post<User>(apiUrl + "createUser", user)
+  create(user: any): Observable<User> {
+    return this.httpClient.post<User>(apiUrl + 'createUser', user);
   }
-  search(searchValue: any){
-    console.log(searchValue)
-    return this.httpClient.get(apiUrl + "search/"+ searchValue)
+  search(searchValue: any) {
+    return this.httpClient.get(apiUrl + 'search/' + searchValue);
   }
-  del(id : any):Observable<User>{
-    return this.httpClient.delete<User>(apiUrl+"delete/"+id)
+  del(id: any): Observable<User> {
+    return this.httpClient.delete<User>(apiUrl + 'delete/' + id);
   }
-  getAllAndPagination(params:any):Observable<User[]>{
-    // console.log(pageIndex, pageSize, sort)
-    console.log("params", params)
-    params = new URLSearchParams(params).toString()
-    return this.httpClient.get<User[]>(apiUrl+`getListUsers?${params}`)
+  getAllAndPagination(params:any): Observable<User[]> {
+    let paramsDefault = { page: '1', limit: '10' };
+    params = Object.assign({}, paramsDefault, params)
+    let newParams = new URLSearchParams(params).toString();
+    return this.httpClient.get<User[]>(apiUrl + `getListUsers?${newParams}`);
   }
-  getByDateRange(date: any):Observable<any>{
-    date = {dateStart : date[0].getTime(),
-      dateEnd:date[1].getTime()}
-    date = new URLSearchParams(date).toString()
-    console.log(date)
-    return this.httpClient.get<User[]>(apiUrl+'getByDate/?'+ date)
+  getByDateRange(date: any): Observable<any> {
+    date = { dateStart: date[0].getTime(), dateEnd: date[1].getTime() };
+    date = new URLSearchParams(date).toString();
+    return this.httpClient.get<User[]>(apiUrl + 'getByDate/?' + date);
   }
 }

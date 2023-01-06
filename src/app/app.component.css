@@ -53,3 +53,6 @@ h1 {
   * {
     font-family: Arial, Helvetica, sans-serif;
   }
+  nz-header{
+    position: sticky;
+  }

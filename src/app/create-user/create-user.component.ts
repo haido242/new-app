@@ -3,7 +3,7 @@ import { User } from '../model/user.model';
 import { UserService } from '../user.service';
 import { GroupService } from '../group.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { UserComponent } from '../user/user.component';
 import { Group } from '../model/group.model';
 
@@ -13,7 +13,8 @@ import { Group } from '../model/group.model';
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css'],
 })
-export class CreateUserComponent {
+export class CreateUserComponent implements OnInit{
+  validateForm!: UntypedFormGroup;
   newUser: any;
   createForm = this.formBuilder.group({
     UserName: '',
@@ -31,15 +32,36 @@ export class CreateUserComponent {
     private route: ActivatedRoute,
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private fb: UntypedFormBuilder
   ) {}
-  onSubmit() {
-
-    this.userService.create(this.createForm.value).subscribe((res: any) => {
-      this.isConfirmLoading = false;
-      this.isVisible = false;
-      this.userComp.getAll()
+  ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      UserName: [null,[Validators.required, Validators.minLength(6)]],
+      Password: [null, [Validators.required, Validators.minLength(6)]],
+      Gender : [null, [Validators.required]],
+      Email: [null, [Validators.required, Validators.email]],
+      GroupId: [null, [Validators.required]],
+      CreateAt: Date.now()
     });
+  }
+  onSubmit() {
+    if(this.validateForm.valid){
+      
+      this.userService.create(this.validateForm.value).subscribe((res: any) => {
+        this.isConfirmLoading = false;
+        this.isVisible = false;
+        this.userComp.getAll()
+      });
+    }else{
+      Object.values(this.validateForm.controls).forEach(control => {
+        if (control.invalid) {
+          control.markAsDirty();
+          control.updateValueAndValidity({ onlySelf: true });
+        }
+      });
+      this.isConfirmLoading = false
+    }
   }
   showModal(): void {
     this.getAllGroup()

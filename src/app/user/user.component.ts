@@ -3,7 +3,7 @@ import { UserService } from '../user.service';
 import { GroupService } from '../group.service';
 import { Group } from '../model/group.model';
 import { User } from '../model/user.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { group } from '@angular/animations';
 import { skip } from 'rxjs';
 
@@ -24,42 +24,48 @@ export class UserComponent implements OnInit {
   total = 10;
   pageSize = 10;
   sortQuery = {};
+  
   filterName = '';
   filter = '';
-  params = {};
+  params = {page: this.pageIndex,
+  limit: this.pageSize};
   listOfDisplayData = [...this.datas];
 
   constructor(
     private userService: UserService,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private router : Router,
+    private route : ActivatedRoute
   ) {}
   sort(option: string) {
     this.sortQuery = {sort: option}
     this.params = Object.assign({},this.params, this.sortQuery)
+    this.setRouteParams()
     this.getAll();
   }
   setFilter(filterName: any, filter: any) {
-    this.params = {
-      page: this.pageIndex,
-      limit: this.pageSize,
-      filter: filter,
-      field: filterName,
-    };
-    this.getAll();
+    let filterQuery = {filter: filter, field : filterName}
+    this.params = Object.assign({}, this.params, filterQuery)
+    this.setRouteParams()
+    // this.getAll();
   }
-  logger() {
-    this.params = {
-      page: this.pageIndex,
-      limit: this.pageSize,
-    };
-    this.getAll();
-  }
-  clearFilter(){
-    this.setDefaultParams()
+  async setRouteParams(){
+    const urlParams = Object.assign({}, this.route.snapshot.queryParams, this.params)
+    await this.router.navigate([],{relativeTo: this.route, queryParams: urlParams} )
     this.getAll()
   }
-  setDefaultParams() {
-    this.params = { page: this.pageIndex, limit: this.pageSize };
+  logger() {
+    let newParams = {
+      page: this.pageIndex,
+      limit : this.pageSize
+    }
+    this.params = Object.assign({}, this.params, newParams)
+    this.setRouteParams()
+  }
+  async clearFilter(){
+    this.params = { page: 1, limit: 10 };
+    await this.router.navigate([],{relativeTo: this.route, queryParams: {}} )
+    this.getAll()
   }
   search(): void {
     this.visible = false;
@@ -71,15 +77,18 @@ export class UserComponent implements OnInit {
     this.getAll();
   }
   ngOnInit(): void {
-    this.setDefaultParams();
+    // this.setDefaultParams();
     this.getAllGroup();
     this.getAll();
   }
-  getAll(): void {
-    this.userService.getAllAndPagination(this.params).subscribe((res: any) => {
+  async getAll(){
+    let parameter = this.route.snapshot.queryParams;
+    this.userService.getAllAndPagination(parameter).subscribe((res: any) => {
       this.datas = res.data;
       this.total = res.total;
       this.listOfDisplayData = this.datas;
+      this.pageSize = res.limit
+      this.pageIndex = res.page
       res.data.forEach((Element: any) => {
         for (const e of this.Group) {
           if (Element.GroupId == e._id) {

@@ -12,24 +12,24 @@
   <ng-template #modalTitle>Create User</ng-template>
 
   <ng-template #modalContent>
-    <form [formGroup]="createForm"  (ngSubmit)="onSubmit()">
+    <form [formGroup]="validateForm"  (ngSubmit)="onSubmit()">
       <nz-form-item>
-        <nz-form-label [nzSpan]="7">User Name</nz-form-label>
-        <nz-form-control [nzSpan]="13">
+        <nz-form-label [nzSpan]="7" nzFor="UserName" >User Name</nz-form-label>
+        <nz-form-control [nzSpan]="13" nzErrorTip="Please input your User Name more than 6 character!">
           <input nz-input formControlName="UserName" />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
         <nz-form-label [nzSpan]="7">Password</nz-form-label>
-        <nz-form-control [nzSpan]="13">
+        <nz-form-control [nzSpan]="13" nzErrorTip="Please input your Password more than 6 character!">
           <input nz-input formControlName="Password" />
         </nz-form-control>
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="7">Gender</nz-form-label>
-        <nz-form-control [nzSpan]="13">
+        <nz-form-label [nzSpan]="7" nzFor="Gender">Gender</nz-form-label>
+        <nz-form-control [nzSpan]="13" nzErrorTip="Please input your Gender!">
           <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Gender" [(ngModel)]="Gender" formControlName="Gender">
             <nz-option nzCustomContent nzLabel="Male" nzValue="Male">
               <span nz-icon nzType="man" nzTheme="outline"></span>
@@ -45,7 +45,7 @@
 
       <nz-form-item>
         <nz-form-label [nzSpan]="7">Group</nz-form-label>
-        <nz-form-control [nzSpan]="13">
+        <nz-form-control [nzSpan]="13" nzErrorTip="Please input your Group!">
           <!-- <input nz-input formControlName="GroupId" /> -->
           <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Group" [(ngModel)]="group" formControlName="GroupId">
             <nz-option *ngFor="let data of Group" nzCustomContent [nzLabel]="data.GroupName" [nzValue]="data._id">
@@ -56,8 +56,8 @@
       </nz-form-item>
 
       <nz-form-item>
-        <nz-form-label [nzSpan]="7">Email</nz-form-label>
-        <nz-form-control [nzSpan]="13">
+        <nz-form-label [nzSpan]="7" >Email</nz-form-label>
+        <nz-form-control [nzSpan]="13" nzErrorTip="The input is not valid E-mail!">
           <input nz-input formControlName="Email" />
         </nz-form-control>
       </nz-form-item>
