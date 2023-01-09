@@ -1,1 +1,24 @@
-<p>group works!</p>
+<div class="temp" style="height: 64px;"></div>
+<nz-table
+#group
+ [nzData]="displayData">
+    <thead>
+        <tr>
+            <th>GroupId</th>
+            <th>Group Name</th>
+            <th>
+                <app-create-group></app-create-group>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let items of Group">
+            <td>{{items._id}}</td>
+            <td>{{items.GroupName}}</td>
+            <td >
+                <app-delete-group [dataId] = 'items._id'></app-delete-group>
+                <app-update-group [dataId] = 'items._id'></app-update-group>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>

@@ -4,6 +4,7 @@ import { UserComponent } from './user/user.component';
 import { EdiUserComponent } from './edit-user/edit-user.component';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { StatComponent } from './stat/stat.component';
+import { GroupComponent } from './group/group.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,9 @@ const routes: Routes = [
   },
   {
     path: 'stat', component: StatComponent
+  },
+  {
+    path: 'group', component: GroupComponent
   }
 
 ];

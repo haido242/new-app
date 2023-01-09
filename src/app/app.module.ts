@@ -40,6 +40,9 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { StatComponent } from './stat/stat.component';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzStatisticModule } from 'ng-zorro-antd/statistic';
+import { CreateComponent } from './components/group/create/create.component';
+import { DeleteComponent } from './components/group/delete/delete.component';
+import { UpdateComponent } from './components/group/update/update.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +54,9 @@ import { NzStatisticModule } from 'ng-zorro-antd/statistic';
     DeleteUserComponent,
     DelUserComponent,
     StatComponent,
+    CreateComponent,
+    DeleteComponent,
+    UpdateComponent,
   ],
   imports: [
     AppRoutingModule,

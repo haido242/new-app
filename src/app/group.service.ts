@@ -8,9 +8,17 @@ const apiUrl = 'http://localhost:3001/group/'
   providedIn: 'root'
 })
 export class GroupService {
-
   constructor(private httpClient: HttpClient) { }
   getAll():Observable<Group[]>{
     return this.httpClient.get<Group[]>(apiUrl)
+  }
+  create(group: any):Observable<Group>{
+    return this.httpClient.post<Group>(apiUrl,group)
+  }
+  del(id: any){
+    return this.httpClient.delete<Group>(apiUrl + id)
+  }
+  update(id : any, group: any):Observable<Group>{
+    return this.httpClient.put<Group>(apiUrl + id,group)
   }
 }

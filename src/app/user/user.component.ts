@@ -4,8 +4,6 @@ import { GroupService } from '../group.service';
 import { Group } from '../model/group.model';
 import { User } from '../model/user.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { group } from '@angular/animations';
-import { skip } from 'rxjs';
 
 @Component({
   selector: 'app-user',

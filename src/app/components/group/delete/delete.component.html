@@ -1,0 +1,16 @@
+<button
+  nzShape="circle"
+  nz-button
+  nzType="primary"
+  nzDanger
+  nz-popconfirm
+  nzPopconfirmTitle="Are you sure delete this User?"
+  nzOkText="delete"
+  nzCancelText="cancel"
+  (nzOnConfirm)="confirm()"
+  (nzOnCancel)="cancel()"
+  nzPopconfirmPlacement="leftBottom"
+  nz-button
+>
+  <span nz-icon nzType="delete" nzTheme="outline"></span>
+</button>

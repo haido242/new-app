@@ -47,7 +47,6 @@ export class CreateUserComponent implements OnInit{
   }
   onSubmit() {
     if(this.validateForm.valid){
-      
       this.userService.create(this.validateForm.value).subscribe((res: any) => {
         this.isConfirmLoading = false;
         this.isVisible = false;
