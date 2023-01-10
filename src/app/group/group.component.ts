@@ -18,7 +18,6 @@ export class GroupComponent implements OnInit{
   getAll(){
     this.groupSevice.getAll().subscribe((res: any) =>{
       this.Group= res
-      console.log(this.Group)
     })
   }
 }
