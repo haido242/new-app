@@ -1,22 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from './model/user.model';
-import { ActivatedRoute, Router } from '@angular/router';
 
-// const httpOptions ={
-//   headers:new HttpHeaders({'Content-Type':'Application/json'})
-// }
 const apiUrl = 'http://localhost:3001/';
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor(
-    private httpClient: HttpClient,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private httpClient: HttpClient) {}
   getAll(): Observable<User[]> {
     return this.httpClient.get<User[]>(apiUrl + 'getListUser');
   }
@@ -35,9 +27,9 @@ export class UserService {
   del(id: any): Observable<User> {
     return this.httpClient.delete<User>(apiUrl + 'delete/' + id);
   }
-  getAllAndPagination(params:any): Observable<User[]> {
+  getAllAndPagination(params: any): Observable<User[]> {
     let paramsDefault = { page: '1', limit: '10' };
-    params = Object.assign({}, paramsDefault, params)
+    params = Object.assign({}, paramsDefault, params);
     let newParams = new URLSearchParams(params).toString();
     return this.httpClient.get<User[]>(apiUrl + `getListUsers?${newParams}`);
   }
