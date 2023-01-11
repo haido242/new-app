@@ -38,4 +38,7 @@ export class UserService {
     date = new URLSearchParams(date).toString();
     return this.httpClient.get<User[]>(apiUrl + 'getByDate/?' + date);
   }
+  test(params: any): Observable<User[]> {
+    return this.httpClient.get<User[]>(apiUrl + `getListUsers?${params}`);
+  }
 }

@@ -46,6 +46,26 @@
       </li>
     </ul>
   </li>
+  <li nz-menu-item nz-submenu nzPlacement="bottomLeft" nzTitle="Filter">
+    <ul>
+      <li nz-submenu nzTitle="Group">
+        <ul *ngFor="let item of Group">
+          <li nz-menu-item (click)="testParms('GroupId', item._id)">
+            {{item.GroupName}}
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Gender">
+        <ul>
+          <li nz-menu-item (click)="testParms('Gender', 'Male')" ><a ></a></li>
+          <li nz-menu-item (click)="testParms('Gender', 'Female')">Female</li>
+        </ul>
+      </li>
+      <li nz-menu-item>
+        <button nz-button nzType="primary" nzDanger (click)="clearFilter()">clear Filter</button>
+      </li>
+    </ul>
+  </li>
 </ul>
 <nz-table
   #columSelectionTable

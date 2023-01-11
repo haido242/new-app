@@ -4,6 +4,7 @@ import { GroupService } from '../group.service';
 import { Group } from '../model/group.model';
 import { User } from '../model/user.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-user',
@@ -118,8 +119,22 @@ export class UserComponent implements OnInit {
   cancel(): void {
     alert('click cancel');
   }
-
   confirm(id: any): void {
     this.deleteUser(id);
+  }
+  arr:any = []
+  async testParms(name: any, value: any){
+    let obj = {name : name, value: value}
+    this.arr.push(obj)
+    console.log(this.arr)
+    let param = ''
+    this.arr.forEach(function(e:any){
+      param += e.name + "=" + e.value + "&";
+   });
+   console.log(window.location.search)
+   const params =new HttpParams().append('page', 2).append('limit',20  ).toString()
+   this.userService.test(params).subscribe((res:any) => console.log(res))
+    // await this.router.navigate([],{relativeTo: this.route, queryParams: urlParams})
+    // this.getAll()
   }
 }
