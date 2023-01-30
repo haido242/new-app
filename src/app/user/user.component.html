@@ -3,16 +3,7 @@
 <h1 nz-typography style="text-align: center">User</h1>
 <ul nz-menu nzMode="horizontal">
   <li nz-menu-item nzCustomFilter>
-    <nz-filter-trigger
-      [(nzVisible)]="visible"
-      [nzActive]="searchValue.length > 0"
-      [nzDropdownMenu]="menu"
-    >
-      <button nz-button nzType="dashed">
-        <span nz-icon nzType="search"></span>
-        Search
-      </button>
-    </nz-filter-trigger>
+    
   </li>
   <li nz-menu-item>
     <button
@@ -77,8 +68,29 @@
       <th>User id</th>
       <th nzCustomFilter>
         User name
+        <nz-filter-trigger
+      [(nzVisible)]="visible"
+      [nzActive]="searchValue.length > 0"
+      [nzDropdownMenu]="menu"
+    >
+      <button nz-button nzType="dashed">
+        <span nz-icon nzType="search"></span>
+        Search
+      </button>
+    </nz-filter-trigger>
       </th>
-      <th>Email</th>
+      <th>Email
+        <nz-filter-trigger
+      [(nzVisible)]="emailSearchVisible"
+      [nzActive]="searchValue.length > 0"
+      [nzDropdownMenu]="searchEmail"
+    >
+      <button nz-button nzType="dashed">
+        <span nz-icon nzType="search"></span>
+        Search
+      </button>
+    </nz-filter-trigger>
+      </th>
       <th>Gender</th>
       <th>Group</th>
       <th class="btn--container">
@@ -136,7 +148,29 @@
         nz-button
         nzSize="small"
         nzType="primary"
-        (click)="search()"
+        (click)="search('UserName')"
+        class="search-button"
+      >
+        Search
+      </button>
+      <button nz-button nzSize="small" (click)="reset()">Reset</button>
+    </div>
+  </div>
+</nz-dropdown-menu>
+<nz-dropdown-menu #searchEmail="nzDropdownMenu">
+  <div class="ant-table-filter-dropdown">
+    <div class="search-box">
+      <input
+        type="text"
+        nz-input
+        placeholder="Search Email"
+        [(ngModel)]="searchValue"
+      />
+      <button
+        nz-button
+        nzSize="small"
+        nzType="primary"
+        (click)="search('Email')"
         class="search-button"
       >
         Search

@@ -21,8 +21,13 @@ export class UserService {
   create(user: any): Observable<User> {
     return this.httpClient.post<User>(apiUrl + 'createUser', user);
   }
-  search(searchValue: any) {
-    return this.httpClient.get(apiUrl + 'search/' + searchValue);
+  search(searchField: any, searchValue: any) {
+    const search = {
+      field : searchField,
+      value : searchValue
+    }
+    let params = new URLSearchParams(search).toString()
+    return this.httpClient.get(apiUrl + 'search/?' + params);
   }
   del(id: any): Observable<User> {
     return this.httpClient.delete<User>(apiUrl + 'delete/' + id);
@@ -39,6 +44,7 @@ export class UserService {
     return this.httpClient.get<User[]>(apiUrl + 'getByDate/?' + date);
   }
   test(params: any): Observable<User[]> {
-    return this.httpClient.get<User[]>(apiUrl + `getListUsers?${params}`);
+    console.log(params)
+    return this.httpClient.get<User[]>(apiUrl + `test?${params}`);
   }
 }

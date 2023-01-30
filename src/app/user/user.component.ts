@@ -19,56 +19,63 @@ export class UserComponent implements OnInit {
   listOfCurrentPageData: readonly User[] = [];
   searchValue = '';
   visible = false;
+  emailSearchVisible = false;
   pageIndex = 1;
   total = 10;
   pageSize = 10;
   sortQuery = {};
-  
+
   filterName = '';
   filter = '';
-  params = {page: this.pageIndex,
-  limit: this.pageSize};
+  params = { page: this.pageIndex, limit: this.pageSize };
   listOfDisplayData = [...this.datas];
 
   constructor(
     private userService: UserService,
     private groupService: GroupService,
-    private router : Router,
-    private route : ActivatedRoute
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
   sort(option: string) {
-    this.sortQuery = {sort: option}
-    this.params = Object.assign({},this.params, this.sortQuery)
-    this.setRouteParams()
+    this.sortQuery = { sort: option };
+    this.params = Object.assign({}, this.params, this.sortQuery);
+    this.setRouteParams();
     this.getAll();
   }
   setFilter(filterName: any, filter: any) {
-    let filterQuery = {filter: filter, field : filterName}
-    this.params = Object.assign({}, this.params, filterQuery)
-    this.setRouteParams()
+    let filterQuery = { filter: filter, field: filterName };
+    this.params = Object.assign({}, this.params, filterQuery);
+    this.setRouteParams();
     // this.getAll();
   }
-  async setRouteParams(){
-    const urlParams = Object.assign({}, this.route.snapshot.queryParams, this.params)
-    await this.router.navigate([],{relativeTo: this.route, queryParams: urlParams} )
-    this.getAll()
+  async setRouteParams() {
+    const urlParams = Object.assign(
+      {},
+      this.route.snapshot.queryParams,
+      this.params
+    );
+    await this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: urlParams,
+    });
+    this.getAll();
   }
   logger() {
     let newParams = {
       page: this.pageIndex,
-      limit : this.pageSize
-    }
-    this.params = Object.assign({}, this.params, newParams)
-    this.setRouteParams()
+      limit: this.pageSize,
+    };
+    this.params = Object.assign({}, this.params, newParams);
+    this.setRouteParams();
   }
-  async clearFilter(){
+  async clearFilter() {
     this.params = { page: 1, limit: 10 };
-    await this.router.navigate([],{relativeTo: this.route, queryParams: {}} )
-    this.getAll()
+    await this.router.navigate([], { relativeTo: this.route, queryParams: {} });
+    this.getAll();
   }
-  search(): void {
+  search(field: any): void {
     this.visible = false;
-    this.searchOnDB();
+    this.searchOnDB(field);
   }
   reset(): void {
     this.visible = false;
@@ -80,14 +87,14 @@ export class UserComponent implements OnInit {
     this.getAllGroup();
     this.getAll();
   }
-  async getAll(){
+  async getAll() {
     let parameter = this.route.snapshot.queryParams;
     this.userService.getAllAndPagination(parameter).subscribe((res: any) => {
       this.datas = res.data;
       this.total = res.total;
       this.listOfDisplayData = this.datas;
-      this.pageSize = res.limit
-      this.pageIndex = res.page
+      this.pageSize = res.limit;
+      this.pageIndex = res.page;
       res.data.forEach((Element: any) => {
         for (const e of this.Group) {
           if (Element.GroupId == e._id) {
@@ -105,8 +112,8 @@ export class UserComponent implements OnInit {
       this.Group = res;
     });
   }
-  searchOnDB(): void {
-    this.userService.search(this.searchValue).subscribe((res: any) => {
+  searchOnDB(field:any): void {
+    this.userService.search(field,this.searchValue).subscribe((res: any) => {
       this.listOfDisplayData = res;
     });
   }
@@ -122,19 +129,21 @@ export class UserComponent implements OnInit {
   confirm(id: any): void {
     this.deleteUser(id);
   }
-  arr:any = []
-  async testParms(name: any, value: any){
-    let obj = {name : name, value: value}
-    this.arr.push(obj)
-    console.log(this.arr)
-    let param = ''
-    this.arr.forEach(function(e:any){
-      param += e.name + "=" + e.value + "&";
-   });
-   console.log(window.location.search)
-   const params =new HttpParams().append('page', 2).append('limit',20  ).toString()
-   this.userService.test(params).subscribe((res:any) => console.log(res))
-    // await this.router.navigate([],{relativeTo: this.route, queryParams: urlParams})
-    // this.getAll()
+  arr: any = [];
+  param = new HttpParams()
+  async testParms(name: any, value: any) {
+    
+    this.param = this.param.append(name, value)
+    console.log(this.param.toString())
+
+    this.userService.test(this.param).subscribe()
+    // this.router.navigate([], {
+    //   relativeTo: this.route,
+    //   queryParams: {
+    //     [name]:value
+    //   },
+    //   queryParamsHandling: 'merge',
+    //   // skipLocationChange: true
+    // })
   }
 }
