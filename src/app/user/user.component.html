@@ -46,11 +46,13 @@
           </li>
         </ul>
       </li>
-      <li nz-submenu nzTitle="Gender">
+      <!-- <li >
         <ul>
-          <li nz-menu-item (click)="testParms('Gender', 'Male')" ><a ></a></li>
-          <li nz-menu-item (click)="testParms('Gender', 'Female')">Female</li>
         </ul>
+      </li> -->
+      <li nz-submenu nzTitle="Gender">
+
+        <nz-checkbox-group [(ngModel)]="checkOptionsTwo" (ngModelChange)="log(checkOptionsTwo)"></nz-checkbox-group>
       </li>
       <li nz-menu-item>
         <button nz-button nzType="primary" nzDanger (click)="clearFilter()">clear Filter</button>

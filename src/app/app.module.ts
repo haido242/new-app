@@ -43,6 +43,7 @@ import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 import { CreateComponent } from './components/group/create/create.component';
 import { DeleteComponent } from './components/group/delete/delete.component';
 import { UpdateComponent } from './components/group/update/update.component';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,6 +83,7 @@ import { UpdateComponent } from './components/group/update/update.component';
     NzPaginationModule,
     NzDatePickerModule,
     NzStatisticModule,
+    NzCheckboxModule
     
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
