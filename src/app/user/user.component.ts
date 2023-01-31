@@ -24,7 +24,10 @@ export class UserComponent implements OnInit {
   total = 10;
   pageSize = 10;
   sortQuery = {};
-
+  checkOptionsTwo = [
+    { label: 'Male', value: 'Male' },
+    { label: 'Female', value: 'Female'}
+  ];
   filterName = '';
   filter = '';
   params = { page: this.pageIndex, limit: this.pageSize };
@@ -36,6 +39,9 @@ export class UserComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {}
+  log(value: object[]): void {
+    console.log(value);
+  }
   sort(option: string) {
     this.sortQuery = { sort: option };
     this.params = Object.assign({}, this.params, this.sortQuery);
@@ -135,15 +141,8 @@ export class UserComponent implements OnInit {
     
     this.param = this.param.append(name, value)
     console.log(this.param.toString())
-
+    
     this.userService.test(this.param).subscribe()
-    // this.router.navigate([], {
-    //   relativeTo: this.route,
-    //   queryParams: {
-    //     [name]:value
-    //   },
-    //   queryParamsHandling: 'merge',
-    //   // skipLocationChange: true
-    // })
+
   }
 }
